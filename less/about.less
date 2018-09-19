@@ -1,0 +1,58 @@
+@import "general";
+
+.about__container{
+    .flex-col-saround;
+    align-items: center;
+    min-height: 200vh;
+}
+
+.projects{
+    .flex-row-sbetween;
+    width: 100%;
+
+    &__subname{
+        font: 300 22px/30px @Gotham;
+        text-transform: uppercase;
+        color: @text;
+    }
+
+    &__name{
+        color: @text;
+        font: 500 44px @Gotham;
+        text-transform: uppercase;
+    }
+
+    &__description{
+        .flex-col-saround;
+        width: 35vw;
+    }
+
+    &__photo{
+        width: 40vw;
+        object-fit: contain;
+
+        &--shadow-blue{
+            box-shadow: -10vw -5vw 0px -30px @blue;
+            object-position: top left;
+        }
+
+        &--shadow-purple{
+            box-shadow: 10vw -5vw 0px -30px @purple;
+            object-position: top right;
+        }
+    }
+
+    &__details, &__info{
+        font: 400 18px @OpenSans;
+        color: @paragraph;
+    }
+
+    &__details{
+        color: @paragraph;
+    }
+
+    &__info{
+        font-style: italic;
+        color: @text;
+    }
+}

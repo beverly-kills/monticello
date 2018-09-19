@@ -1,0 +1,134 @@
+@import "general";
+
+/* MENU styles */
+.menu{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+
+    &__wrap{
+        .flex-row-sbetween;
+        align-items: center;
+        height: 80px;
+    }
+
+    &--bg{
+        background-color: @purple;
+        transition: all .5s ease;
+    }
+}
+
+.nav{
+
+    width: 40%;
+
+    &__list{
+        .flex-row-sbetween;
+    }
+
+    &__item{
+        display: inline-block;
+        position: relative;
+
+        &::before{
+            content: "";
+            .dot;
+            position: absolute;
+            left: -15px;
+            top: 3px;
+            background: transparent;
+        }
+
+        &--active::before{
+            content: "";
+            .dot;
+            position: absolute;
+            left: -15px;
+            top: 3px;
+            background: @white;
+        }
+    }
+
+    &__link{
+        font: 300 14px @Gotham;
+        text-transform: uppercase;
+    }
+}
+
+.social{
+    .flex-row-sbetween;
+    width: 12vw;
+
+    &__icon{
+        .flex-centering;
+        height: 35px;
+        width: 35px;
+        border: 1px solid @white;
+        border-radius: 50%;
+
+        &:hover{
+            // background-color: rgba(255,255,255, 0.3);
+            background-color: @paragraph;
+            opacity: 0.5;
+        }
+    }
+}
+
+/* header styles */
+.header{
+    .flex-centering!important;
+    flex-direction: column;
+    height: 100vh!important;
+    text-align: center;
+    color: @white;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+
+    /* background-size: cover; почему-то не применяется если указать тут */
+    &--bg1{
+        background: url(../img/Bghead.jpg) no-repeat;
+        background-size: cover;
+    }
+    &--bg2{
+        background: url(../img/Bg.jpg) no-repeat center bottom;
+        background-size: cover;
+    }
+    &--bg3{
+        background: url(../img/bghead2.jpg) no-repeat;
+        background-size: cover;
+    }
+    &--bg4{
+        background: url(../img/bghead3.jpg) center no-repeat;
+        background-size: cover;
+    }
+    &--bg5{
+        background: url(../img/bghead4.jpg) no-repeat;
+        background-size: cover;
+    }
+}
+
+.header__title{
+    font: 700 80px @Gotham;
+}
+
+.header__subtitle{
+    font: 300 18px/70px @Gotham;
+}
+
+.slick-dots{
+    position: absolute;
+    right: 20px;
+    top: 40%;
+
+    & li button{
+    .dot;
+    background: transparent;
+    font-size: 0px;
+    cursor: pointer;
+    outline: none;
+    }
+
+    & li.slick-active button{
+        background: @white;
+    }
+}

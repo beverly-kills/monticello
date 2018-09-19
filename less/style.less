@@ -1,0 +1,584 @@
+@import "slick";
+
+/* fonts */
+@font-face{
+    font-family: 'Gotham';
+    src: url('../fonts/GothamBook/GothamBook.eot');
+    src: url('../fonts/GothamBook/GothamBook.woff') format('woff'),
+         url('../fonts/GothamBook/GothamBook.ttf') format('truetype');
+    font-weight: light;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Gotham';
+    src: url('../fonts/gothambold/gothambold1.eot');
+    src: url('../fonts/gothambold/gothambold1.woff') format('woff'),
+         url('../fonts/gothambold/gothambold1.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Gotham';
+    src: url('../fonts/Gotham Medium Regular/Gotham_Medium_Regular.ttf') format('typetrue'),
+         url('../fonts/Gotham Medium Regular/gotham-medium-webfont.woff') format('woff');
+    font-weight: medium;
+    font-style: normal;
+}
+
+@Gotham: Gotham, sans-serif;
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i');
+
+@OpenSans: 'Open Sans', sans-serif;
+
+/* colors */
+@blue: #55b7ff;
+@purple: #7e5aff;
+@text: #2c4058;
+@paragraph: #4a5562;
+@white: #fff;
+
+/* General styles */
+
+.container{
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.title{
+    color: @text;
+    font: 500 44px @Gotham;
+    text-transform: uppercase;
+    text-align: center;
+
+    &::before{
+        content: "";
+        display: block;
+        margin: 0 auto 3vh;
+        border: 1px solid @text;
+        width: 10vw;
+    }
+}
+
+.logo{
+    height: 55px;
+}
+
+.link{
+    text-decoration: none;
+    color: @white;
+}
+
+.button{
+    height: 48px;
+    width: 188px;
+    position: relative;
+    background: none;
+    border: 1px solid @text;
+    text-transform: uppercase;
+    color: @text;
+    font: 300 14px @Gotham;
+    cursor: pointer;
+    outline: none;
+
+    &::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        transition: .4s;
+        border: 0 solid @text;
+    }
+
+    &:hover::after {
+        border-width: 1px;
+        width: calc(100% - 15px);
+        height: calc(100% + 15px);
+      }
+}
+
+/* MIXINS */
+
+.flex-row-sbetween{
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-col-saround{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.flex-centering{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dot{
+    padding: 3px;
+    border: 1px solid @white;
+    border-radius: 50%;
+}
+
+/* MENU styles */
+.menu{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+
+    &__wrap{
+        .flex-row-sbetween;
+        align-items: center;
+        height: 80px;
+    }
+
+    &--bg{
+        background-color: @purple;
+        transition: all .5s ease;
+    }
+}
+
+.nav{
+
+    width: 40%;
+
+    &__list{
+        .flex-row-sbetween;
+    }
+
+    &__item{
+        display: inline-block;
+        position: relative;
+
+        &::before{
+            content: "";
+            .dot;
+            position: absolute;
+            left: -15px;
+            top: 3px;
+            background: transparent;
+        }
+
+        &--active::before{
+            content: "";
+            .dot;
+            position: absolute;
+            left: -15px;
+            top: 3px;
+            background: @white;
+        }
+    }
+
+    &__link{
+        font: 300 14px @Gotham;
+        text-transform: uppercase;
+    }
+}
+
+.social{
+    .flex-row-sbetween;
+    width: 12vw;
+
+    &__icon{
+        .flex-centering;
+        height: 35px;
+        width: 35px;
+        border: 1px solid @white;
+        border-radius: 50%;
+
+        &:hover{
+            // background-color: rgba(255,255,255, 0.3);
+            background-color: @paragraph;
+            opacity: 0.5;
+        }
+    }
+}
+
+/* header styles */
+.header{
+    .flex-centering!important;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+    color: @white;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+
+    /* background-size: cover; почему-то не применяется если указать тут */
+    &--bg1{
+        background: url(../img/Bghead.jpg) no-repeat;
+        background-size: cover;
+    }
+    &--bg2{
+        background: url(../img/Bg.jpg) no-repeat center bottom;
+        background-size: cover;
+    }
+    &--bg3{
+        background: url(../img/bghead2.jpg) no-repeat;
+        background-size: cover;
+    }
+    &--bg4{
+        background: url(../img/bghead3.jpg) center no-repeat;
+        background-size: cover;
+    }
+    &--bg5{
+        background: url(../img/bghead4.jpg) no-repeat;
+        background-size: cover;
+    }
+}
+
+.header__title{
+    font: 700 80px @Gotham;
+}
+
+.header__subtitle{
+    font: 300 18px/70px @Gotham;
+}
+
+.slick-dots{
+    position: absolute;
+    right: 20px;
+    top: 40%;
+
+    & li button{
+    .dot;
+    background: transparent;
+    font-size: 0px;
+    cursor: pointer;
+    outline: none;
+    }
+
+    & li.slick-active button{
+        background: @white;
+    }
+}
+
+/* ABOUT styles */
+
+.about__container{
+    .flex-col-saround;
+    align-items: center;
+    min-height: 200vh;
+}
+
+.projects{
+    .flex-row-sbetween;
+    width: 100%;
+
+    &__subname{
+        font: 300 22px/30px @Gotham;
+        text-transform: uppercase;
+        color: @text;
+    }
+
+    &__name{
+        color: @text;
+        font: 500 44px @Gotham;
+        text-transform: uppercase;
+    }
+
+    &__description{
+        .flex-col-saround;
+        width: 35vw;
+    }
+
+    &__photo{
+        width: 40vw;
+        object-fit: contain;
+
+        &--shadow-blue{
+            box-shadow: -10vw -5vw 0px -30px @blue;
+            object-position: top left;
+        }
+
+        &--shadow-purple{
+            box-shadow: 10vw -5vw 0px -30px @purple;
+            object-position: top right;
+        }
+    }
+
+    &__details, &__info{
+        font: 400 18px @OpenSans;
+        color: @paragraph;
+    }
+
+    &__details{
+        color: @paragraph;
+    }
+
+    &__info{
+        font-style: italic;
+        color: @text;
+    }
+}
+
+/* NEWS styles */
+
+.news{
+    .flex-col-saround;
+    min-height: 100vh;
+    background: url(../img/Bg.jpg) no-repeat center bottom fixed;
+    background-size: cover;
+    text-align: center;
+
+    &__slider{
+        max-width: 80%;
+    }
+
+    &__wrap{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    &__dots{
+        display: flex;
+        width: 20vh;
+        justify-content: space-between;
+        margin: 20px auto 0;
+    
+        & li button{
+        .dot;
+        background: transparent;
+        font-size: 0px;
+        cursor: pointer;
+        outline: none;
+        }
+    
+        & li.slick-active button{
+            background: @white;
+        }
+
+    }
+
+    &__arrow{
+        width: 40px;
+        &:hover{
+            transition: all .5s ease;
+            transform: scale(1.1)
+        }
+    }
+}
+
+.article{
+    width: 23vw;
+    margin-right: 4vw;
+    background-color: @white;
+    text-align: left;
+    outline: none;
+
+    &__photo{
+        width: 100%;
+    }
+
+    &__summary{
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 230px;
+    }
+
+    &__title{
+        font: 700 22px @Gotham;
+        color: @text;
+    }
+
+    &__lead{
+        color: @paragraph;
+        font: 400 18px @OpenSans;
+    }
+
+    &__extra{
+        display: flex;
+        align-items: center;
+    }
+
+    &__portrait{
+        border-radius: 50%;
+        height: 60px;
+        margin-right: 15px;
+    }
+
+    &__author{
+        font: 300 18px @Gotham;
+        text-transform: uppercase;
+        color: @text;
+    }
+
+    &__date{
+        font: 300 14px @Gotham;
+        color: @blue;
+    }
+}
+
+/* GALLERY styles */
+
+.gallery{
+    min-height: 100vh;
+    .flex-col-saround;
+
+    &__item{
+        position: relative;
+        width: calc(25% - 5px);
+
+        &--main{
+            width: calc(50% - 10px);
+        }
+    }
+
+    &__pic{
+        width: 100%;
+    }
+
+    &__mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #000;
+        opacity: .0;
+        .flex-centering;
+    }
+
+    &__button{
+        align-self: center;
+        /* потому что от align-otems ломается masonry */
+    }
+}
+
+/* MAP/Contact styles */
+
+.contact{
+    position: relative;
+    // .flex-col-saround;
+    // align-items: center;
+    // height: 100vh;
+    &__map{
+        height: 80vh;
+        width: 100%;
+    }
+
+    &__button{
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        bottom: 20vh;
+        background-color: @white;
+        box-shadow: 3px 1px 67px 5px @purple;
+    }
+}
+
+/* FOOTER styles */
+
+.footer{
+    background: url(../img/footer-bg.jpg) no-repeat right top fixed;
+    background-size: cover;
+    min-height: 500px;
+    color: @white;
+    .flex-centering;
+
+    &__wrap{
+        width: 50vw;
+        height: 20vh;
+        .flex-col-saround;
+    }
+
+    &__copyright{
+        display: inline;
+        font: 300 14px @Gotham;
+        &:not(:last-child):after{
+            content: "|";
+            margin: 0 1em;
+        }
+    }
+}
+
+/* MODAL styles */
+
+.modal{
+    &__cover{
+        display: none;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 100%;
+    }
+
+    &__window{
+        display: none;
+        position: absolute;
+        top: 20%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width: 770px;
+        height: 450px;
+        box-shadow: 0px -4px 30px 0px rgba(133, 133, 133, 0.2);
+        background-color: @white;
+    }
+
+    &__content{
+        .flex-col-saround;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__body{
+        .flex-row-sbetween;
+        height: 60%;
+        width: 80%;
+        color: @text;
+        font: 300 18px @Gotham;
+    }
+
+    &__fa{
+        color: @purple;
+    }
+
+    &__contact{
+        height: 100%;
+        width: 45%;
+        .flex-col-saround
+    }
+
+    &__input{
+        display: block;
+        width: 100%;
+        height: 40px;
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 1px solid @paragraph;
+        outline: none;
+
+        &:focus{
+            border-bottom: 2px solid @text;
+            &::placeholder{
+                color: @text;
+            }
+        }
+
+        &::placeholder{
+            color: @paragraph;
+            font: 300 18px @Gotham;
+        }
+    }
+
+    &__button{
+        align-self: flex-end;
+    }
+}
