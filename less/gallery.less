@@ -1,0 +1,35 @@
+@import "general";
+
+.gallery{
+    min-height: 100vh;
+    .flex-col-saround;
+
+    &__item{
+        position: relative;
+        width: calc(25% - 5px);
+
+        &--main{
+            width: calc(50% - 10px);
+        }
+    }
+
+    &__pic{
+        width: 100%;
+    }
+
+    &__mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: #000;
+        opacity: .0;
+        .flex-centering;
+    }
+
+    &__button{
+        align-self: center;
+        /* потому что от align-otems ломается masonry */
+    }
+}
